@@ -1,9 +1,9 @@
-using MeshSplitTool.Editor.UnionFind;
+using ScriptMeshTools.Editor.UnionFind;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-namespace MeshSplitTool.Editor.Extensions
+namespace ScriptMeshTools.Editor.Extensions
 {
     public static class MeshSplitExtension
     {

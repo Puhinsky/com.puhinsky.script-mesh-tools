@@ -1,8 +1,8 @@
-using MeshSplitTool.Editor.Extensions;
+using ScriptMeshTools.Editor.Extensions;
 using UnityEditor;
 using UnityEngine;
 
-namespace MeshSplitTool.Editor
+namespace ScriptMeshTools.Editor
 {
     public class SplitMeshTool
     {

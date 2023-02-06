@@ -1,6 +1,6 @@
 {
-    "name": "Mesh Split Tool Editor",
-    "rootNamespace": "MeshSplitTool.Editor",
+    "name": "Script Mesh Tool Editor",
+    "rootNamespace": "ScriptMeshTool.Editor",
     "references": [],
     "includePlatforms": [
         "Editor"

@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace MeshSplitTool.Editor.Extensions
+namespace ScriptMeshTools.Editor.Extensions
 {
     public static class MeshExtensions
     {

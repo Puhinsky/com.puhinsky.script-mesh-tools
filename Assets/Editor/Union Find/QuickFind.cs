@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace MeshSplitTool.Editor.UnionFind
+namespace ScriptMeshTools.Editor.UnionFind
 {
 
     public class QuickFind
