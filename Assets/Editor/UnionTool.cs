@@ -9,18 +9,19 @@ namespace MeshSplitTool.Editor
         [MenuItem("CONTEXT/MeshFilter/Split")]
         public static void Split(MenuCommand menuCommand)
         {
-            var mesh = (menuCommand.context as MeshFilter).sharedMesh;
+            var meshFilter = menuCommand.context as MeshFilter;
 
-            var meshParts = mesh.Split();
+            meshFilter.SplitMesh();
+        }
 
-            foreach (var meshPart in meshParts)
-            {
-                var gameObject = new GameObject();
-                var meshFilter = gameObject.AddComponent<MeshFilter>();
-                var meshRenderer = gameObject.AddComponent<MeshRenderer>();
-                meshFilter.sharedMesh = meshPart;
-                meshRenderer.sharedMaterial = (menuCommand.context as MeshFilter).GetComponent<MeshRenderer>().sharedMaterial;
-            }
+        [MenuItem("CONTEXT/MeshFilter/Merge")]
+        public static void Merge(MenuCommand menuCommand)
+        {
+            var meshFilter = menuCommand.context as MeshFilter;
+
+            var weldedMesh = Object.Instantiate(meshFilter.sharedMesh);
+            weldedMesh.Weld(0.01f);
+            meshFilter.sharedMesh = weldedMesh;
         }
     }
 }
