@@ -7,6 +7,9 @@ namespace ScriptMeshTools.Editor.VertexCore
     {
         Positions = 1,
         Normals = 2,
-        Uv = 4
+        Uv1 = 4,
+        Uv2 = 8,
+        Uv3 = 16,
+        Uv4 = 32
     }
 }

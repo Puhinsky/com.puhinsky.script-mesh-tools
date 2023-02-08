@@ -10,7 +10,8 @@ namespace ScriptMeshTools.Editor.WeldTool
     {
         private Mesh _mesh;
         private VertexCompareSettings _settings;
-        private IncludedAttributes _includedAttributes;
+        private IncludedAttributes _attributes;
+        private IncludedAttributes _excludedAttributes;
         private int[] _map;
         private List<Vertex> _newVertices;
 
@@ -20,9 +21,17 @@ namespace ScriptMeshTools.Editor.WeldTool
             _settings = settings;
         }
 
+        public VertexWelder(Mesh mesh, VertexCompareSettings settings, IncludedAttributes excludedAttributes)
+        {
+            _mesh = mesh;
+            _settings = settings;
+            _excludedAttributes = excludedAttributes;
+        }
+
         public void Weld()
         {
             CheckAttributes();
+            ExcludeAttributes();
             CreateVertices();
             RemapTriangles();
             AssignVertices();
@@ -37,7 +46,7 @@ namespace ScriptMeshTools.Editor.WeldTool
 
             for (int i = 0; i < vertexCount; i++)
             {
-                var vertex = new Vertex(_mesh, _includedAttributes, i);
+                var vertex = new Vertex(_mesh, _attributes, i);
 
                 if (!dublicates.ContainsKey(vertex))
                 {
@@ -68,9 +77,12 @@ namespace ScriptMeshTools.Editor.WeldTool
         {
             foreach (IncludedAttributes attribute in Enum.GetValues(typeof(IncludedAttributes)))
             {
-                if (MeshAttributeDefenition.Attributes.TryGetValue(attribute, out MeshAttribute meshAttribute))
+                if(_attributes.HasFlag(attribute))
                 {
-                    meshAttribute.SetDataToMesh(_mesh, _newVertices);
+                    if (MeshAttributeDefenition.Attributes.TryGetValue(attribute, out MeshAttribute meshAttribute))
+                    {
+                        meshAttribute.SetDataToMesh(_mesh, _newVertices);
+                    }
                 }
             }
         }
@@ -81,9 +93,14 @@ namespace ScriptMeshTools.Editor.WeldTool
             {
                 if (MeshAttributeDefenition.Attributes.TryGetValue(attribute, out MeshAttribute meshAttribute))
                 {
-                    _includedAttributes = meshAttribute.CheckAttributes(_mesh, _includedAttributes);
+                    _attributes = meshAttribute.CheckAttributes(_mesh, _attributes);
                 }
             }
+        }
+
+        private void ExcludeAttributes()
+        {
+            _attributes &= ~_excludedAttributes; 
         }
     }
 }

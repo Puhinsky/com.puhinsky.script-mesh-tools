@@ -13,7 +13,7 @@ namespace ScriptMeshTools.Editor
                 PositionThreshold = 0.01f, 
                 NormalThreshold = 1f, 
                 UvThreshold = 0.001f 
-            });
+            }, IncludedAttributes.Uv2);
             welder.Weld();
         }
     }

@@ -15,9 +15,12 @@ namespace ScriptMeshTool.Editor.MeshCore
 
         public override void SetDataToMesh(Mesh mesh, List<Vertex> vertices)
         {
+            if (!MeshDataEnabled(mesh.normals))
+                return;
+
             mesh.normals = GetData<Vector3>(vertices);
         }
 
-        public override bool MeshDataIncluded(Mesh mesh) => !CheckMeshDataDisabled(mesh.normals);
+        public override bool MeshDataIncluded(Mesh mesh) => MeshDataEnabled(mesh.normals);
     }
 }

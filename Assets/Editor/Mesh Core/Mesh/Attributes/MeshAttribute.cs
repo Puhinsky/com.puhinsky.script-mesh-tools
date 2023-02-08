@@ -33,9 +33,9 @@ namespace ScriptMeshTool.Editor.MeshCore
             return vertices.Select(x => x.Attributes.Single(y => y.Attribute == Attribute)).Cast<UniversalVertexAttribute<T>>().Select(z => z.Value).ToArray();
         }
 
-        protected bool CheckMeshDataDisabled<T>(T[] data)
+        protected bool MeshDataEnabled<T>(T[] data)
         {
-            return data == null || data.Length == 0;
+            return data != null && data.Length != 0;
         }
     }
 }
