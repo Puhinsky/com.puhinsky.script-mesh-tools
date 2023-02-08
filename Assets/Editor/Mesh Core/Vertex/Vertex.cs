@@ -1,4 +1,4 @@
-﻿using ScriptMeshTool.Editor.VertexCore;
+﻿using ScriptMeshTool.Editor.MeshCore;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,9 +13,9 @@ namespace ScriptMeshTools.Editor.VertexCore
         {
             foreach (IncludedAttributes attribute in Enum.GetValues(typeof(IncludedAttributes)))
             {
-                if (attribute.Equals(includedAttributes))
+                if (includedAttributes.HasFlag(attribute))
                 {
-                    Attributes.Add(MeshAttributeDefenition.AttributeDefenition[attribute].CreateVertexAttribute(mesh, indexInMesh));
+                    Attributes.Add(MeshAttributeDefenition.Attributes[attribute].CreateVertexAttribute(mesh, indexInMesh));
                 }
             }
         }

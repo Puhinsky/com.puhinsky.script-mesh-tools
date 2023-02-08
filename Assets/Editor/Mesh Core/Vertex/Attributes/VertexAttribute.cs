@@ -9,7 +9,7 @@
             Attribute = attribute;
         }
 
-        public abstract bool Equals(object obj, VertexCompareSettings settings);
+        public abstract bool Equals(VertexAttribute vertexAttribute, VertexCompareSettings settings);
         public abstract override int GetHashCode();
     }
 }

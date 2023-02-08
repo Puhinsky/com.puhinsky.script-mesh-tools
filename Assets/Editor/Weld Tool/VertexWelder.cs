@@ -1,9 +1,7 @@
-using ScriptMeshTool.Editor.VertexCore;
+using ScriptMeshTool.Editor.MeshCore;
 using ScriptMeshTools.Editor.VertexCore;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using UnityEditor;
 using UnityEngine;
 
 namespace ScriptMeshTools.Editor.WeldTool
@@ -16,16 +14,15 @@ namespace ScriptMeshTools.Editor.WeldTool
         private int[] _map;
         private List<Vertex> _newVertices;
 
-        public VertexWelder(Mesh mesh, VertexCompareSettings settings, IncludedAttributes includedAttributes)
+        public VertexWelder(Mesh mesh, VertexCompareSettings settings)
         {
             _mesh = mesh;
             _settings = settings;
-            _includedAttributes = includedAttributes;
         }
 
         public void Weld()
         {
-            _includedAttributes = CheckAttributes(_includedAttributes);
+            CheckAttributes();
             CreateVertices();
             RemapTriangles();
             AssignVertices();
@@ -71,29 +68,22 @@ namespace ScriptMeshTools.Editor.WeldTool
         {
             foreach (IncludedAttributes attribute in Enum.GetValues(typeof(IncludedAttributes)))
             {
-                if (_includedAttributes == attribute)
+                if (MeshAttributeDefenition.Attributes.TryGetValue(attribute, out MeshAttribute meshAttribute))
                 {
-                    MeshAttributeDefenition.AttributeDefenition[attribute].SetDataToMesh(_mesh, _newVertices);
+                    meshAttribute.SetDataToMesh(_mesh, _newVertices);
                 }
             }
         }
 
-        private T[] GetDataFromVertices<T>(IncludedAttributes attribute)
-        {
-            return _newVertices.Select(x => x.Attributes.Single(y => y.Attribute == attribute)).Cast<UniversalVertexAttribute<T>>().Select(z => z.Value).ToArray();
-        }
-
-        private IncludedAttributes CheckAttributes(IncludedAttributes attributes)
+        private void CheckAttributes()
         {
             foreach (IncludedAttributes attribute in Enum.GetValues(typeof(IncludedAttributes)))
             {
-                if (attributes == attribute)
+                if (MeshAttributeDefenition.Attributes.TryGetValue(attribute, out MeshAttribute meshAttribute))
                 {
-                    attributes = MeshAttributeDefenition.AttributeDefenition[attribute].CheckAttributes(_mesh, _includedAttributes);
+                    _includedAttributes = meshAttribute.CheckAttributes(_mesh, _includedAttributes);
                 }
             }
-
-            return attributes;
         }
     }
 }
