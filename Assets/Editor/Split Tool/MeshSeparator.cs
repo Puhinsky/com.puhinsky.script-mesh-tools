@@ -103,7 +103,7 @@ namespace ScriptMeshTool.Editor
             {
                 var subMesh = originMesh.GetSubMesh(i);
 
-                if (verticesInMeshPart.Any(x => x >= subMesh.firstVertex && x <= subMesh.firstVertex + subMesh.vertexCount))
+                if (verticesInMeshPart.Any(x => x >= subMesh.firstVertex && x < subMesh.firstVertex + subMesh.vertexCount))
                 {
                     subMeshes.Add(subMesh);
                     subMeshesIndices.Add(i);
