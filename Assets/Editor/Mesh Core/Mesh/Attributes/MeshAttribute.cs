@@ -1,4 +1,4 @@
-﻿using ScriptMeshTools.Editor.VertexCore;
+﻿using ScriptMeshTools.Editor.MeshCore;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -7,9 +7,9 @@ namespace ScriptMeshTool.Editor.MeshCore
 {
     public abstract class MeshAttribute
     {
-        protected IncludedAttributes Attribute;
+        protected VertexAttributes Attribute;
 
-        public MeshAttribute(IncludedAttributes attribute)
+        public MeshAttribute(VertexAttributes attribute)
         {
             Attribute = attribute;
         }
@@ -18,7 +18,7 @@ namespace ScriptMeshTool.Editor.MeshCore
         public abstract void SetDataToMesh(Mesh mesh, List<Vertex> vertices);
         public abstract bool MeshDataIncluded(Mesh mesh);
 
-        public IncludedAttributes CheckAttributes(Mesh mesh, IncludedAttributes attributes)
+        public VertexAttributes CheckAttributes(Mesh mesh, VertexAttributes attributes)
         {
             if (MeshDataIncluded(mesh))
                 attributes |= Attribute;

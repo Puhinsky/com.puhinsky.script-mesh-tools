@@ -1,3 +1,6 @@
+using NUnit.Framework;
+using ScriptMeshTool.Editor;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace ScriptMeshTools.Editor.Extensions
@@ -7,11 +10,20 @@ namespace ScriptMeshTools.Editor.Extensions
         public static void SplitMesh(this MeshFilter meshFilter)
         {
             var meshRenderer = meshFilter.GetComponent<MeshRenderer>();
-            var meshParts = meshFilter.sharedMesh.Split();
+            var meshSeparator = new MeshSeparator(meshFilter.sharedMesh);
+
+            var meshParts = meshSeparator.GetSplittedMeshes();
 
             foreach (var meshPart in meshParts)
             {
-                CreatePartObject(meshPart, meshFilter.transform, meshRenderer.sharedMaterials);
+                var materials = new List<Material>();
+
+                foreach (var materialIndex in meshSeparator.OriginSubMeshesMap[meshPart])
+                {
+                    materials.Add(meshRenderer.sharedMaterials[materialIndex]);
+                }
+
+                CreatePartObject(meshPart, meshFilter.transform, materials.ToArray());
             }
 
             Object.DestroyImmediate(meshFilter, true);

@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace ScriptMeshTools.Editor.VertexCore
+namespace ScriptMeshTools.Editor.MeshCore
 {
     public class VertexEqualityComparer : IEqualityComparer<Vertex>
     {

@@ -1,10 +1,10 @@
 ﻿using UnityEngine;
 
-namespace ScriptMeshTools.Editor.VertexCore
+namespace ScriptMeshTools.Editor.MeshCore
 {
     public class VertexNormalAttribute : UniversalVertexAttribute<Vector3>
     {
-        public VertexNormalAttribute(IncludedAttributes attribute, Vector3 value) : base(attribute, value) { }
+        public VertexNormalAttribute(VertexAttributes attribute, Vector3 value) : base(attribute, value) { }
 
         public override bool Equals(VertexAttribute vertexAttribute, VertexCompareSettings settings)
         {

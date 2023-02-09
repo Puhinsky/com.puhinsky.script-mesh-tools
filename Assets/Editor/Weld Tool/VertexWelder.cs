@@ -1,5 +1,5 @@
 using ScriptMeshTool.Editor.MeshCore;
-using ScriptMeshTools.Editor.VertexCore;
+using ScriptMeshTools.Editor.MeshCore;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,8 +10,8 @@ namespace ScriptMeshTools.Editor.WeldTool
     {
         private Mesh _mesh;
         private VertexCompareSettings _settings;
-        private IncludedAttributes _attributes;
-        private IncludedAttributes _excludedAttributes;
+        private VertexAttributes _attributes;
+        private VertexAttributes _excludedAttributes;
         private int[] _map;
         private List<Vertex> _newVertices;
 
@@ -21,7 +21,7 @@ namespace ScriptMeshTools.Editor.WeldTool
             _settings = settings;
         }
 
-        public VertexWelder(Mesh mesh, VertexCompareSettings settings, IncludedAttributes excludedAttributes)
+        public VertexWelder(Mesh mesh, VertexCompareSettings settings, VertexAttributes excludedAttributes)
         {
             _mesh = mesh;
             _settings = settings;
@@ -35,6 +35,7 @@ namespace ScriptMeshTools.Editor.WeldTool
             CreateVertices();
             RemapTriangles();
             AssignVertices();
+            Optimize();
         }
 
         private void CreateVertices()
@@ -75,7 +76,7 @@ namespace ScriptMeshTools.Editor.WeldTool
 
         private void AssignVertices()
         {
-            foreach (IncludedAttributes attribute in Enum.GetValues(typeof(IncludedAttributes)))
+            foreach (VertexAttributes attribute in Enum.GetValues(typeof(VertexAttributes)))
             {
                 if(_attributes.HasFlag(attribute))
                 {
@@ -89,7 +90,7 @@ namespace ScriptMeshTools.Editor.WeldTool
 
         private void CheckAttributes()
         {
-            foreach (IncludedAttributes attribute in Enum.GetValues(typeof(IncludedAttributes)))
+            foreach (VertexAttributes attribute in Enum.GetValues(typeof(VertexAttributes)))
             {
                 if (MeshAttributeDefenition.Attributes.TryGetValue(attribute, out MeshAttribute meshAttribute))
                 {
@@ -101,6 +102,11 @@ namespace ScriptMeshTools.Editor.WeldTool
         private void ExcludeAttributes()
         {
             _attributes &= ~_excludedAttributes; 
+        }
+
+        private void Optimize()
+        {
+            _mesh.Optimize();
         }
     }
 }

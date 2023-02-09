@@ -1,4 +1,4 @@
-﻿namespace ScriptMeshTools.Editor.VertexCore
+﻿namespace ScriptMeshTools.Editor.MeshCore
 {
     public struct VertexCompareSettings
     {

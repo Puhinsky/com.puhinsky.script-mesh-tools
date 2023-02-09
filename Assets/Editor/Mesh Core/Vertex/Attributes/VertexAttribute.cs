@@ -1,10 +1,10 @@
-﻿namespace ScriptMeshTools.Editor.VertexCore
+﻿namespace ScriptMeshTools.Editor.MeshCore
 {
     public abstract class VertexAttribute
     {
-        public IncludedAttributes Attribute;
+        public VertexAttributes Attribute;
 
-        public VertexAttribute(IncludedAttributes attribute)
+        public VertexAttribute(VertexAttributes attribute)
         {
             Attribute = attribute;
         }

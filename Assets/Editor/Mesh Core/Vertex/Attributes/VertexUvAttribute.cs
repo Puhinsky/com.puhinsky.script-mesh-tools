@@ -1,13 +1,11 @@
-using ScriptMeshTools.Editor.VertexCore;
-using System.Collections;
-using System.Collections.Generic;
+using ScriptMeshTools.Editor.MeshCore;
 using UnityEngine;
 
-namespace ScriptMeshTool.Editor
+namespace ScriptMeshTool.Editor.MeshCore
 {
     public class VertexUvAttribute : UniversalVertexAttribute<Vector2>
     {
-        public VertexUvAttribute(IncludedAttributes attribute, Vector2 value) : base(attribute, value) { }
+        public VertexUvAttribute(VertexAttributes attribute, Vector2 value) : base(attribute, value) { }
 
         public override bool Equals(VertexAttribute vertexAttribute, VertexCompareSettings settings)
         {

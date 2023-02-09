@@ -1,4 +1,4 @@
-﻿using ScriptMeshTools.Editor.VertexCore;
+﻿using ScriptMeshTools.Editor.MeshCore;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,7 +6,7 @@ namespace ScriptMeshTool.Editor.MeshCore
 {
     public class MeshPositionAttribute : MeshAttribute
     {
-        public MeshPositionAttribute(IncludedAttributes attribute) : base(attribute) { }
+        public MeshPositionAttribute(VertexAttributes attribute) : base(attribute) { }
 
         public override VertexAttribute CreateVertexAttribute(Mesh mesh, int indexInMesh)
         {
@@ -15,9 +15,6 @@ namespace ScriptMeshTool.Editor.MeshCore
 
         public override void SetDataToMesh(Mesh mesh, List<Vertex> vertices)
         {
-            if (!MeshDataEnabled(mesh.vertices))
-                return;
-
             mesh.vertices = GetData<Vector3>(vertices);
         }
 

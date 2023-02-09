@@ -1,4 +1,4 @@
-﻿using ScriptMeshTools.Editor.VertexCore;
+﻿using ScriptMeshTools.Editor.MeshCore;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,7 +6,7 @@ namespace ScriptMeshTool.Editor.MeshCore
 {
     public class MeshNormalAttribute : MeshAttribute
     {
-        public MeshNormalAttribute(IncludedAttributes attribute) : base(attribute) { }
+        public MeshNormalAttribute(VertexAttributes attribute) : base(attribute) { }
 
         public override VertexAttribute CreateVertexAttribute(Mesh mesh, int indexInMesh)
         {
@@ -15,9 +15,6 @@ namespace ScriptMeshTool.Editor.MeshCore
 
         public override void SetDataToMesh(Mesh mesh, List<Vertex> vertices)
         {
-            if (!MeshDataEnabled(mesh.normals))
-                return;
-
             mesh.normals = GetData<Vector3>(vertices);
         }
 

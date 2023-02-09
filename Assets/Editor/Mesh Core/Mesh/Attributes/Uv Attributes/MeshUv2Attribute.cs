@@ -1,5 +1,5 @@
 using ScriptMeshTool.Editor.MeshCore;
-using ScriptMeshTools.Editor.VertexCore;
+using ScriptMeshTools.Editor.MeshCore;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,7 +7,7 @@ namespace ScriptMeshTool.Editor
 {
     public class MeshUv2Attribute : MeshAttribute
     {
-        public MeshUv2Attribute(IncludedAttributes attribute) : base(attribute) { }
+        public MeshUv2Attribute(VertexAttributes attribute) : base(attribute) { }
 
         public override VertexAttribute CreateVertexAttribute(Mesh mesh, int indexInMesh)
         {
@@ -18,9 +18,6 @@ namespace ScriptMeshTool.Editor
 
         public override void SetDataToMesh(Mesh mesh, List<Vertex> vertices)
         {
-            if (!MeshDataEnabled(mesh.uv2))
-                return;
-
             mesh.uv2 = GetData<Vector2>(vertices);
         }
     }

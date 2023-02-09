@@ -1,9 +1,9 @@
 ﻿using System;
 
-namespace ScriptMeshTools.Editor.VertexCore
+namespace ScriptMeshTools.Editor.MeshCore
 {
     [Flags]
-    public enum IncludedAttributes
+    public enum VertexAttributes
     {
         Positions = 1,
         Normals = 2,

@@ -1,13 +1,13 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace ScriptMeshTools.Editor.VertexCore
+namespace ScriptMeshTools.Editor.MeshCore
 {
     public abstract class UniversalVertexAttribute<T> : VertexAttribute
     {
         public T Value;
 
-        public UniversalVertexAttribute(IncludedAttributes attribute, T value) : base(attribute)
+        public UniversalVertexAttribute(VertexAttributes attribute, T value) : base(attribute)
         {
             Value = value;
         }
