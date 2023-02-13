@@ -51,11 +51,15 @@ namespace ScriptMeshTool.Editor
         public int[][] CreateUnionsByMesh(Mesh mesh)
         {
             var unionFind = new QuickFind(mesh.vertexCount);
-
-            foreach (var indices in mesh.GroupIndicesByTriangles())
+            var combiners = new List<IUnionCombiner>()
             {
-                unionFind.Union(indices[0], indices[1]);
-                unionFind.Union(indices[0], indices[2]);
+                new CombinerByFace(mesh),
+                new CombinerByPosition(mesh)
+            };
+
+            foreach (var combiner in combiners)
+            {
+                combiner.Union(unionFind);
             }
 
             return unionFind.GetAllocatedUnions();
