@@ -20,7 +20,6 @@ namespace ScriptMeshTool.Editor
             var includedAttributes = VertexAttributes.Positions;
             var vertexComparer = new VertexEqualityComparer(new VertexCompareSettings() { PositionThreshold = 0.01f });
             var dublicates = new Dictionary<Vertex, int>(vertexComparer);
-            var vertices = new List<Vertex>();
             var map = new int[_mesh.vertexCount];
 
             for (int i = 0; i < _mesh.vertexCount; i++)
@@ -29,8 +28,7 @@ namespace ScriptMeshTool.Editor
 
                 if (!dublicates.ContainsKey(vertex))
                 {
-                    dublicates.Add(vertex, vertices.Count);
-                    vertices.Add(vertex);
+                    dublicates.Add(vertex, i);
                 }
 
                 map[i] = dublicates[vertex];
