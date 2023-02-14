@@ -20,7 +20,7 @@ namespace ScriptMeshTools.Editor
             var meshFilter = menuCommand.context as MeshFilter;
 
             var weldedMesh = Object.Instantiate(meshFilter.sharedMesh);
-            weldedMesh.Weld(0.01f);
+            weldedMesh.Weld();
             meshFilter.sharedMesh = weldedMesh;
         }
     }

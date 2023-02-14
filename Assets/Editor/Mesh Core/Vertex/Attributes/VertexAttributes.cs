@@ -10,6 +10,7 @@ namespace ScriptMeshTools.Editor.MeshCore
         Uv1 = 4,
         Uv2 = 8,
         Uv3 = 16,
-        Uv4 = 32
+        Uv4 = 32,
+        Colors = 64
     }
 }

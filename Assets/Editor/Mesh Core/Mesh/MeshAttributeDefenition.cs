@@ -13,6 +13,7 @@ namespace ScriptMeshTool.Editor.MeshCore
             { VertexAttributes.Uv2, new MeshUv2Attribute(VertexAttributes.Uv2)},
             { VertexAttributes.Uv3, new MeshUv3Attribute(VertexAttributes.Uv3)},
             { VertexAttributes.Uv4, new MeshUv4Attribute(VertexAttributes.Uv4)},
+            { VertexAttributes.Colors, new MeshColorAttribute(VertexAttributes.Colors)}
         };
     }
 }

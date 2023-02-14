@@ -1,4 +1,3 @@
-using NUnit.Framework;
 using ScriptMeshTool.Editor;
 using System.Collections.Generic;
 using UnityEngine;

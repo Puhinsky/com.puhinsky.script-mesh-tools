@@ -5,5 +5,6 @@
         public float PositionThreshold;
         public float NormalThreshold;
         public float UvThreshold;
+        public float ColorThreshold;
     }
 }

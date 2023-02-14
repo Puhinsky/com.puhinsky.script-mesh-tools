@@ -6,7 +6,7 @@ namespace ScriptMeshTools.Editor
 {
     public static class MeshVerticesWeldExtension
     {
-        public static void Weld(this Mesh mesh, float weldDelta)
+        public static void Weld(this Mesh mesh)
         {
             var welder = new VertexWelder(mesh, new VertexCompareSettings() 
             {
