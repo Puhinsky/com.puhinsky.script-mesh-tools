@@ -1,0 +1,18 @@
+{
+    "name": "Puhinsky.ScriptMeshTools.Editor",
+    "rootNamespace": "Puhinsky.ScriptMeshTools.Editor",
+    "references": [
+        "GUID:25cfda15f15fa8b43b868253c18949db"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
