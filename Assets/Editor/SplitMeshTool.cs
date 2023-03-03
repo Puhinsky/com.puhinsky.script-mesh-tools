@@ -10,7 +10,6 @@ namespace ScriptMeshTools.Editor
         public static void Split(MenuCommand menuCommand)
         {
             var meshFilter = menuCommand.context as MeshFilter;
-
             meshFilter.SplitMesh();
         }
 

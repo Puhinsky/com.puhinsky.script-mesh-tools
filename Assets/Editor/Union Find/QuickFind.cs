@@ -2,38 +2,37 @@ using System.Collections.Generic;
 
 namespace ScriptMeshTools.Editor.UnionFind
 {
-
     public class QuickFind
     {
-        private int[] _nodes;
+        protected int[] Nodes;
 
         public QuickFind(int n)
         {
-            _nodes = new int[n];
+            Nodes = new int[n];
 
             for (int i = 0; i < n; i++)
             {
-                _nodes[i] = i;
+                Nodes[i] = i;
             }
         }
 
-        public void Union(int p, int q)
+        public virtual void Union(int p, int q)
         {
             int pRoot = Find(p);
             int qRoot = Find(q);
-            _nodes[qRoot] = pRoot;
+            Nodes[qRoot] = pRoot;
         }
 
-        public bool Connected(int p, int q)
+        public virtual bool Connected(int p, int q)
         {
-            return _nodes[p] == _nodes[q];
+            return Nodes[p] == Nodes[q];
         }
 
-        public int Find(int p)
+        public virtual int Find(int p)
         {
-            while (p != _nodes[p])
+            while (p != Nodes[p])
             {
-                p = _nodes[p];
+                p = Nodes[p];
             }
 
             return p;
@@ -43,7 +42,7 @@ namespace ScriptMeshTools.Editor.UnionFind
         {
             var nodesMap = new Dictionary<int, List<int>>();
 
-            for (int i = 0; i < _nodes.Length; i++)
+            for (int i = 0; i < Nodes.Length; i++)
             {
                 var currentUnionIndex = Find(i);
 

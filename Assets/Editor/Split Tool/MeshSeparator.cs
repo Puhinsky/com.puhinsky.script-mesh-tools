@@ -50,7 +50,7 @@ namespace ScriptMeshTool.Editor
 
         public int[][] CreateUnionsByMesh(Mesh mesh)
         {
-            var unionFind = new QuickFind(mesh.vertexCount);
+            var unionFind = new WeightedQuickFind(mesh.vertexCount);
             var combiners = new List<IUnionCombiner>()
             {
                 new CombinerByFace(mesh),
